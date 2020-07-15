@@ -16,7 +16,7 @@ class Vue {
         // 遍历data中的所有属性
         Object.keys(data).forEach(key => {
             // 把data的属性注入到vue实例中
-            Object.defineProperty（this, key, {
+            Object.defineProperty(this, key, {
                 enumerable: true,
                 configurable: true,
                 get () {
@@ -28,7 +28,7 @@ class Vue {
                     }
                     data[key] = newValue
                 }
-            }
+            })
         })
     }
 }
