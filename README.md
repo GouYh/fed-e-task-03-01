@@ -46,3 +46,4 @@
 
     3.参考Snabbdom提供的电影列表的示例，利用Snabbdom实现类似的效果，如图：
 
+    答：见code/snabbdom
