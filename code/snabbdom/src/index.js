@@ -7,7 +7,7 @@ import listeners from 'snabbdom/modules/eventlisteners.js'
 const patch = init([clazz, props, style, listeners])
 
 // 初始化数据
-let vnode
+let oldVnode
 
 let nextKey = 11
 const margin = 8
@@ -69,6 +69,7 @@ function remove (movie) {
   render()
 }
 
+// 生成电影列表虚拟dom
 function movieView (movie) {
   return h('div.row', {
     key: movie.rank,
@@ -95,9 +96,11 @@ function render () {
     return acc.concat(m)
   }, [])
   totalHeight = data[data.length - 1].offset + data[data.length - 1].elmHeight
-  vnode = patch(vnode, view(data))
+  // 通过patch方法将虚拟dom转换成dom，并记录当前虚拟dom树
+  oldVnode = patch(oldVnode, view(data))
 }
 
+// 生成页面虚拟dom
 function view (data) {
   return h('div', [
     h('h1', 'Top 10 movies'),
@@ -116,6 +119,6 @@ function view (data) {
 
 window.addEventListener('DOMContentLoaded', () => {
   var container = document.getElementById('container')
-  vnode = patch(container, view(data))
+  oldVnode = patch(container, view(data))
   render()
 })
